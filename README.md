@@ -1,28 +1,18 @@
-# Candlepin Scorekeeper - Interview Exercise
+# Candle pin App - frontend
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app). The requirements and description for this exercise were added to the `docs` directory for convenience.
 
-Overview:
+#### Problem Statement
+A fictional candlepin bowling company wants to upgrade their bowling lanes with an automated scoring system. The lanes have been outfitted with cameras and sensors which will feed information about downed pins to an application server. This server should calculate and track game information for each lane. Each lane will have a tablet that displays the game information for all players to see.
 
-* Update the LICENSE to either be open source OR to be copyrighted to you. This exercise is solely for us to review your code and skills.
-* Create a new repo with this code as the base. There should be two branches: `main` and `devel`.
-* Create a branch from `devel` and create the application there.
-* Use the test data in `test-data` to test and develop.
-* Once done, create a pull request, assign Joseph and Scott to it, and notify us of the code.
+#### Setup
 
-## Available Scripts
+```
+$ git clone https://github.com/emukungu/Candlepin.git
+$ cd Candlepin
+$ npm install
+```
 
-In the project directory, you can run:
-
-### `npm start`
-
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in the browser.
-
-The page will reload if you make edits.\
-You will also see any lint errors in the console.
-
-### `npm test`
-
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+#### Running the application locally
+```
+$ npm run start
+```
