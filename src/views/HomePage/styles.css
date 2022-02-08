@@ -1,0 +1,42 @@
+#user-input{
+    margin-left: 0.2em;
+    margin-top: 0.2em;
+    display: flex;
+    align-items: flex-start;
+    flex-wrap: wrap;
+    
+}
+.add-user{
+    max-height: 15%;
+    border: 1px solid black;
+    overflow:hidden;
+}
+
+input{
+    margin-left: 0.2em;
+}
+
+.start-btn{
+    width: 20%;
+    height: 15%;
+    position: absolute;
+    top: 50%;
+    left: 40%;
+    border: 1px solid;
+    box-shadow: 2px 2px;
+}
+.start-remove{
+    display: none;
+}
+
+.frames-display{
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+} 
+
+.player{
+    /* display: flex;
+    flex-wrap: wrap; */
+    margin-left: 10px;
+}

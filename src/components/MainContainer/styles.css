@@ -1,0 +1,18 @@
+#main{
+    max-width: 80%;
+    margin: 30px auto;
+}
+
+.lane{
+    display: flex;
+    justify-content: space-between;
+}
+
+.lane p{ 
+    align-items: flex-end;
+}
+
+#ch-container{
+    min-height: 90vh;
+    border: 2px solid black;
+}
