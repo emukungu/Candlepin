@@ -31,6 +31,10 @@ const scoreDisplay = (frame) => {
   )
 }
 
+const sleep = async(millis)=> {
+  return new Promise((resolve) => setTimeout(resolve, millis));
+}
+
 const FrameBoard = ({ started, setPlayers, setStart }) => {
   const [gameData, setGameData] = useState();
   const [show, setShow] = useState(false);
@@ -38,18 +42,16 @@ const FrameBoard = ({ started, setPlayers, setStart }) => {
   const restart = () => {
     setShow(true);
   }
-
-    const getGameData= ()=>{
+    const getGameData = async() => {
       try{
         for (let i = 1; i < list.length;i++) {
-          setInterval(function() {    
-            setGameData(list[i]);
-          }, 2000); 
+          await sleep(5000);
+          setGameData(list[i]);
         }
       }catch(err){
           return err;
       }
-    }
+   }
 
     useEffect(()=>{
       setGameData(list[0]);
