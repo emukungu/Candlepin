@@ -1,7 +1,9 @@
-export const GameButton = ({ isStarted, handleClick, setPlayers, setShow, setStart }) => {
+export const GameButton = ({ isStarted, handleClick, setPlayers, setShow, setStart}) => {
     return (
         <div className="col-auto">
-            <button type="button" className="btn add-user" onClick={ handleClick }>
+            <button type="button" className="btn add-user" 
+                onClick={ handleClick }
+            >
                 {!isStarted
                 ? (
                     <svg xmlns="http://www.w3.org/2000/svg" width="16" 

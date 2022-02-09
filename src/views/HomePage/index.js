@@ -24,14 +24,11 @@ const HomePage = () => {
     const [started, setStart] = useState(false);
 
     const handleChange = event => {
-        if(!event.target.value){
-            return "Add Name";
-        }
         setName(event.target.value);
       };
 
     const handleSubmit = () => {
-        if(name && players.length <= 8){
+        if(name && players.length < 8){
             setPlayers(players => [...players, name]);
         }      
     }
@@ -40,14 +37,14 @@ const HomePage = () => {
       <MainContainer>
           {!started ? (<>
             <div id='user-input'>
-                {!started && <GameButton isStarted={started} handleClick={handleSubmit}
+                <GameButton isStarted={started} handleClick={handleSubmit} players={players}
                     setPlayers={setPlayers}
                     setStart={setStart}
-                 />}
+                 />
                 {players && players.map((player, index) => {
                     return userDisplay(player, index);
                 })}
-                {(started === false && (players.length === 8)) || (started === true && (players.length < 8))
+                {players.length >= 8
                     ? null
                     : (<div className="col-auto">
                         <input type="text"
