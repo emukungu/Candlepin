@@ -8,6 +8,7 @@ import GameButton from '../../components/GameButton';
 import loadedData from '../../util';
 
 const list = loadedData;
+const playerList = [];
 
 const playerDisplay = (player) => {
   return(
@@ -15,11 +16,17 @@ const playerDisplay = (player) => {
   )
 }
 
-const scoreDisplay = (frame) => {
+const scoreDisplay = (frame, savedPlayers, setShow, setGameComplete) => {
   return (
     <tr>
       <TTH frameNumber={frame.frame}/>
       {frame.scores.map((playerScore) => {
+        if(frame.frame === 10 && playerScore.completed){
+          playerList.push(playerScore.completed);
+        }else if(playerList.length === savedPlayers.length){
+          setShow(true);
+          setGameComplete(true);
+        }
         return(
           <TTD 
             downed={playerScore.downed} 
@@ -38,6 +45,8 @@ const sleep = async(millis)=> {
 const FrameBoard = ({ started, setPlayers, setStart }) => {
   const [gameData, setGameData] = useState();
   const [show, setShow] = useState(false);
+  const [savedPlayers, setSavedPlayers] = useState([]);
+  const [gameComplete, setGameComplete] = useState(false);
 
   const restart = () => {
     setShow(true);
@@ -55,6 +64,7 @@ const FrameBoard = ({ started, setPlayers, setStart }) => {
 
     useEffect(()=>{
       setGameData(list[0]);
+      setSavedPlayers(list[0].players);
       getGameData();
     },[])
     return (
@@ -76,7 +86,7 @@ const FrameBoard = ({ started, setPlayers, setStart }) => {
               </tr>
             </thead>
             <tbody>
-              {gameData.frames.map((frame) => scoreDisplay(frame))}
+              {gameData.frames.map((frame) => scoreDisplay(frame, savedPlayers, setShow, setGameComplete))}
             </tbody>
           </table>
         </div>
@@ -84,9 +94,13 @@ const FrameBoard = ({ started, setPlayers, setStart }) => {
         <Modal show={show} setPlayers={setPlayers}
         setStart={setStart}
         setShow={setShow}
-        text="Are you sure you want torestart the game"
-        okButton="Restart"
-        cancel="cancel"
+        gameComplete={gameComplete}
+        setGameComplete={setGameComplete}
+        text={gameComplete 
+          ? "Game comlete! Would like to start another game":"Are you sure you want torestart the game"
+        }
+        okButton={gameComplete ? "Start":"Restart"}
+        cancel={gameComplete ? "Quit":"cancel"}
         />
       </>
     )

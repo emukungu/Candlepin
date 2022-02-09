@@ -5,8 +5,10 @@ import React from 'react';
 const ModalView = (props) => {
   const { show, setShow, 
     setPlayers, setStart,
-    text, okButton, cancel
+    text, okButton, cancel,
+    gameComplete, setGameComplete
    } = props;
+
   const hideModal = () => {
     setShow(false);
   };
@@ -15,12 +17,23 @@ const ModalView = (props) => {
     setPlayers([]);
     setStart(false);
   }
+
+  const handleStart = () => {
+    setStart(false);
+    setGameComplete(false);
+  }
+
+  const handleQuit = () => {
+    handleRestart();
+    hideModal();
+    setGameComplete(false);
+  }
   return (
     <Modal show={show} onHide={hideModal}>
       <Modal.Body>{text}</Modal.Body>
       <Modal.Footer>
-          <button onClick={hideModal}>{cancel}</button>
-          <button onClick={handleRestart}>{okButton}</button>
+          <button onClick={gameComplete? handleQuit : hideModal}>{cancel}</button>
+          <button onClick={gameComplete ? handleStart : handleRestart}>{okButton}</button>
       </Modal.Footer>
     </Modal>
   );
