@@ -1,0 +1,15 @@
+.frame-inputs{
+    display: flex;
+}
+
+.frame{
+    margin-top: 5px;
+    margin-left: 5px;
+    width: 22%;
+}
+
+@media screen and (max-width: 800px) {
+    .frame{
+        width: 100%;
+    }
+}

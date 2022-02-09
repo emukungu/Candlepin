@@ -1,0 +1,24 @@
+.frame-board{
+    margin-left: 0.2em;
+    margin-top: 5px;
+    width: 40px;
+    box-shadow: 2px 2px;;
+}
+
+#restart{
+    width: 18%;
+}
+th .player{
+    width: 50%;
+    margin-left: 10px;
+}
+
+#tb-display{
+    width: 60%;
+}
+
+@media screen and (max-width: 800px) {
+    th .player{
+        width: 100%;
+    }
+}
