@@ -5,18 +5,30 @@ import "./styles.css";
 import Modal from '../../components/Modal';
 import GameButton from '../../components/GameButton';
 
+import { PlayerProps } from "../../components/Player";
 import loadedData from '../../util';
+import { ApiData, FrameProps, Score } from "../../interfaces/Frame.interface";
 
 const list = loadedData;
 const playerList = [];
 
-const playerDisplay = (player) => {
+const playerDisplay = (player: string) => {
   return(
       <THead playerName={player}/>
   )
 }
 
-const scoreDisplay = (frame, savedPlayers, setShow, setGameComplete) => {
+interface FrameScoreProp {
+  frame: number;
+  scores: Score[];
+}
+ 
+const scoreDisplay = (
+  frame: FrameScoreProp, 
+  savedPlayers: string[], 
+  setShow: React.Dispatch<React.SetStateAction<boolean>>, 
+  setGameComplete: React.Dispatch<React.SetStateAction<boolean>>
+  ) => {
   return (
     <tr>
       <TTH frameNumber={frame.frame}/>
@@ -38,14 +50,14 @@ const scoreDisplay = (frame, savedPlayers, setShow, setGameComplete) => {
   )
 }
 
-const sleep = async(millis)=> {
+const sleep = async(millis: number)=> {
   return new Promise((resolve) => setTimeout(resolve, millis));
 }
 
-const FrameBoard = ({ started, setPlayers, setStart }) => {
-  const [gameData, setGameData] = useState();
+const FrameBoard = ({ started, setPlayers, setStart }: FrameProps) => {
+  const [gameData, setGameData] = useState<ApiData | null>(null);
   const [show, setShow] = useState(false);
-  const [savedPlayers, setSavedPlayers] = useState([]);
+  const [savedPlayers, setSavedPlayers] = useState<string[]| []>([]);
   const [gameComplete, setGameComplete] = useState(false);
 
   const restart = () => {
@@ -96,17 +108,19 @@ const FrameBoard = ({ started, setPlayers, setStart }) => {
         setShow={setShow}
         gameComplete={gameComplete}
         setGameComplete={setGameComplete}
-        text={gameComplete 
-          ? "Game comlete! Would like to start another game":"Are you sure you want torestart the game"
-        }
-        okButton={gameComplete ? "Start":"Restart"}
-        cancel={gameComplete ? "Quit":"cancel"}
+        text={gameComplete
+          ? "Game comlete! Would like to start another game" : "Are you sure you want torestart the game"}
+        okButton={gameComplete ? "Start" : "Restart"}
+        cancel={gameComplete ? "Quit" : "cancel"} 
         />
       </>
     )
 }
 
-const THead = ({playerName}) => {
+interface THeadProp{
+  playerName: string
+}
+const THead = ({playerName}: THeadProp) => {
   return (
     <th scope="col">
       <div
@@ -118,7 +132,11 @@ const THead = ({playerName}) => {
 
   )
 }
-const TTH = ({frameNumber}) => {
+
+interface TTHProp{
+  frameNumber: number
+}
+const TTH = ({frameNumber}: TTHProp) => {
   return (
     <th scope="row" className="frame-number">
       <div className="form-control frame-board" >{ frameNumber }
@@ -127,7 +145,7 @@ const TTH = ({frameNumber}) => {
   )
 }
 
-const TTD = ({downed, score}) => {
+const TTD = ({downed, score}: PlayerProps) => {
   return (
     <td><Player downed={downed} score ={score}/></td>
   )

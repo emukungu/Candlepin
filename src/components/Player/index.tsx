@@ -2,8 +2,12 @@ import React from 'react';
 
 import './styles.css';
 
+export interface PlayerProps{
+  downed: number,
+  score: number
+}
 
-export const Player = ({downed, score}) => {
+export const Player = ({downed, score}: PlayerProps) => {
   return (
     <div className='form-group frame-inputs'>
       <div className="form-control frame" >{downed}</div>

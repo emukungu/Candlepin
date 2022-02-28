@@ -5,8 +5,9 @@ import MainContainer from '../../components/MainContainer';
 import GameButton from '../../components/GameButton';
 
 import './styles.css';
+import { ISButton } from '../../interfaces/Button.interface';
 
-const userDisplay = (player, index) => {
+const userDisplay = (player: string, index: number) => {
     return(
         <div key={index} className='player'>
             <div
@@ -19,18 +20,19 @@ const userDisplay = (player, index) => {
 }
 
 const HomePage = () => {
-    const [name, setName] = useState(null);
-    const [players, setPlayers] = useState([]);
+    const [name, setName] = useState("");
+    const [players, setPlayers] = useState<string[]>([]);
     const [started, setStart] = useState(false);
 
-    const handleChange = event => {
+    const handleChange = (event: React.ChangeEvent<HTMLInputElement>) => {
         setName(event.target.value);
       };
 
     const handleSubmit = () => {
         if(name && players.length < 8){
             setPlayers(players => [...players, name]);
-        }      
+        }
+        setName("");
     }
 
   return (
@@ -68,8 +70,7 @@ const HomePage = () => {
   );
 };
 
-
-const StartButton = ({isStarted, handleClick}) => {
+const StartButton = ({isStarted, handleClick} : ISButton) => {
     return (
         <button type="button" 
             className={`btn btn-lg start-${isStarted ? 'remove' : 'btn'}`} 

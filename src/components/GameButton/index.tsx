@@ -1,4 +1,7 @@
-export const GameButton = ({ isStarted, handleClick, setPlayers, setShow, setStart}) => {
+import { ButtonProps } from "../../interfaces/Button.interface";
+
+
+export const GameButton = ({ isStarted, handleClick, setPlayers, setShow, setStart}: ButtonProps) => {
     return (
         <div className="col-auto">
             <button type="button" className="btn add-user" 

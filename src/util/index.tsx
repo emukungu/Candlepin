@@ -1,7 +1,14 @@
-let list = [];
+import { ApiData } from "../interfaces/Frame.interface";
+
+
+export interface List{
+    data: ApiData[]
+}
+let list:List["data"] = [];
+
 const loadData = async() => {  
   try{
-    const rawdata1 = await fetch('./test-data/game_started.json',{
+    const rawdata1: Response = await fetch('./test-data/game_started.json',{
       headers : { 
         'Content-Type': 'application/json',
         'Accept': 'application/json'
@@ -37,6 +44,7 @@ const loadData = async() => {
         'Accept': 'application/json'
         }
     });
+   
     list.push(await rawdata1.json(), await rawdata2.json(), 
               await rawdata3.json(), await rawdata4.json(), 
               await rawdata5.json(), await rawdata6.json()

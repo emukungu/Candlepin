@@ -1,8 +1,10 @@
 import Modal from "react-bootstrap/Modal";
 
 import React from 'react';
+import { ModalProps } from "../../interfaces/Modal.nterface";
 
-const ModalView = (props) => {
+
+const ModalView = (props: ModalProps) => {
   const { show, setShow, 
     setPlayers, setStart,
     text, okButton, cancel,
